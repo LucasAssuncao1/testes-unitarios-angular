@@ -5,33 +5,42 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './banking.component.html',
-  styleUrl: './banking.component.scss'
+  styleUrl: './banking.component.scss',
 })
-export class BankingComponent {
 
+export class BankingComponent {
   private poupanca: number = 10;
   private carteira: number = 50;
 
-  public getPoupanca(): number{
+  public getPoupanca(): number {
     return this.poupanca;
   }
 
-  public getCarteira(): number{
+  public getCarteira(): number {
     return this.carteira;
   }
 
-
-  public setSacar(value: string): number{
+  public setSacar(value: string): number | undefined {
     const sacar = Number(value);
+
+    if (isNaN(sacar) || this.poupanca < sacar) {
+      return;
+    }
+    this.poupanca -= sacar;
+
     console.log(sacar);
-    
-    return sacar;
+    return (this.carteira += sacar);
   }
 
-  public setDepositar(value: string): number{
+  public setDepositar(value: string): number | undefined {
     const depositar = Number(value);
+
+    if (isNaN(depositar) || this.carteira < depositar) {
+      return;
+    }
+    this.carteira -= depositar;
+
     console.log(depositar);
-    
-    return depositar;
+    return (this.poupanca += depositar);
   }
 }
