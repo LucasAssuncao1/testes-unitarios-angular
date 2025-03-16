@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Investiments } from '../model/investiments';
+import { Investiments } from '../../model/investiments';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,19 +13,19 @@ export class ListComponent {
 
   public investiments: Array<Investiments> = [
     {
-      name: "itaú",
+      name: 'Itaú',
       value: 100
     },
     {
-      name: "BB",
+      name: 'BB',
       value: 100
     },
     {
-      name: "Nubank",
+      name: 'Nubank',
       value: 100
     },
     {
-      name: "XP",
+      name: 'XP',
       value: 100
     },
   ];

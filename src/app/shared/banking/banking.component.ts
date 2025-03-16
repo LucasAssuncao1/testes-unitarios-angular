@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ListComponent } from "../investiments/list/list.component";
+import { ListComponent } from "../investiments/components/list/list.component";
 
 @Component({
   selector: 'app-banking',
