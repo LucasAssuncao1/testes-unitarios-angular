@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { ListComponent } from "../investiments/list/list.component";
 
 @Component({
   selector: 'app-banking',
   standalone: true,
-  imports: [],
+  imports: [ListComponent],
   templateUrl: './banking.component.html',
   styleUrl: './banking.component.scss',
 })

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BankingComponent } from './banking.component';
+import { ListComponent } from '../investiments/list/list.component';
 
 describe('BankingComponent', () => {
   let component: BankingComponent;
@@ -8,7 +9,7 @@ describe('BankingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BankingComponent]
+      imports: [BankingComponent, ListComponent]
     })
       .compileComponents();
 
@@ -46,6 +47,16 @@ describe('BankingComponent', () => {
 
   });
 
+  it('(I) setSacar(): should transfer from poupanca to carteira', () => {
+    let element = fixture.debugElement.nativeElement;
+
+    element.querySelector('#input-sacar').value = ('10');
+    element.querySelector('#sacar').click();
+    fixture.detectChanges();
+
+    expect(element.querySelector('#get-carteira').textContent.trim()).toEqual('60');
+  });
+
   it('(U) setDepositar(): should transfer from carteira to poupanca', () => {
     component.setDepositar('50');
     expect(component.getCarteira()).toEqual(0);
@@ -61,5 +72,15 @@ describe('BankingComponent', () => {
     expect(component.getPoupanca()).toEqual(10);
     expect(component.getCarteira()).toEqual(50);
 
+  });
+
+  it('(I) setDepositar(): should transfer from carteira to poupanca', () => {
+    let element = fixture.debugElement.nativeElement;
+
+    element.querySelector('#input-depositar').value = '10';
+    element.querySelector('#depositar').click();
+    fixture.detectChanges();
+
+    expect(element.querySelector('#get-poupanca').textContent.trim()).toEqual('20');
   });
 });
