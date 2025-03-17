@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { Investiments } from '../../model/investiments';
 import { CommonModule } from '@angular/common';
+import { ListInvestimentsService } from '../../services/list-investiments.service';
 
 @Component({
   selector: 'app-list',
@@ -9,25 +10,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class ListComponent implements OnInit{
 
-  public investiments: Array<Investiments> = [
-    {
-      name: 'Itaú',
-      value: 100
-    },
-    {
-      name: 'BB',
-      value: 100
-    },
-    {
-      name: 'Nubank',
-      value: 100
-    },
-    {
-      name: 'XP',
-      value: 100
-    },
-  ];
+ constructor(){}
+
+  public investiments !: Array<Investiments>;
+
+  private listInvestimentsService = inject(ListInvestimentsService);
+
+  ngOnInit(): void {
+    this.listInvestimentsService
+    .getList()
+    .subscribe( (res) => (this.investiments = res))
+  }
+
 
 }
